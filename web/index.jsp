@@ -3,7 +3,11 @@
     Created on : 5 Apr, 2024, 2:40:44 PM
     Author     : harsh
 --%>
-
+<%@ page import="java.sql.*" %>
+<%@ page import="javax.naming.Context" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.sql.DataSource" %>
+<%@ page language="java" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -74,6 +78,53 @@
     </div>
   </div>
 </nav>
+
+<section>
+    <% 
+
+ String jdbcUrl = "jdbc:mysql://localhost:3306/java_project";
+ String id = "root";
+        String password = "";
+ System.out.println("Before try .....  ");
+ Connection connection;
+     
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(jdbcUrl, id, password); 
+            Class.forName("com.mysql.jdbc.Driver");
+        Statement stmt = null;
+        ResultSet rs = null;
+stmt = connection.createStatement();
+ rs = stmt.executeQuery("SELECT * FROM camp");
+ while (rs.next()) {
+    %>
+
+  <div class="container mt-5">
+    <div class="card">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="https://via.placeholder.com/150" class="card-img" alt="Placeholder Image">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= rs.getString("name") %></h5>
+            <p class="card-text">Some example text. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate numquam enim deserunt repellat provident nisi aperiam! Fugit laudantium vero labore!</p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><strong>Data 1:</strong>let's try</li>
+              <li class="list-group-item"><strong>Data 2:</strong> Value 2</li>
+              <li class="list-group-item"><strong>Data 3:</strong> Value 3</li>
+              <!-- Add more data fields here if needed -->
+            </ul>
+            <!-- Additional fields or buttons can be added here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <% } %>
+    
+    
+</section>
         </section>
         
         
