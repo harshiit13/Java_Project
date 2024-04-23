@@ -3,6 +3,7 @@
     Created on : 5 Apr, 2024, 2:40:44 PM
     Author     : harsh
 --%>
+<%@ page import="java.io.*, java.sql.*, java.util.Base64" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.naming.Context" %>
 <%@ page import="javax.naming.InitialContext" %>
@@ -56,7 +57,7 @@
 %>
        
         <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <a class="nav-link " href="/Java_Project/form" >Form</a>
         </li>
       </ul>
         
@@ -66,7 +67,7 @@
  
     if (username != null) {
         
-        out.println("<div class='d-flex ms-auto order-5'>Logout</div>");
+        out.println("<div class='d-flex ms-auto order-5'><a href='/Java_Project/logout'>Logout</a></div>");
     } else {
         System.out.println("Hwere iside oyttttttt");
          out.println("<div class='d-flex ms-auto order-5'><a class='nav-link' href='/Java_Project/login'>LogIn</a></div>");
@@ -96,20 +97,26 @@
 stmt = connection.createStatement();
  rs = stmt.executeQuery("SELECT * FROM camp");
  while (rs.next()) {
-    %>
+     
+ Blob imageBlob = rs.getBlob("photo");
+            byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
 
+            String base64Image = Base64.getEncoder().encodeToString(imageData);
+            
+    %>
+    <a href="/Java_Project/show?rcamp=<%= rs.getString("id") %>">  
   <div class="container mt-5">
     <div class="card">
       <div class="row no-gutters">
         <div class="col-md-4">
-          <img src="https://via.placeholder.com/150" class="card-img" alt="Placeholder Image">
+          <img class="img-fluid h-100" src="data:image/jpeg;base64,<%= base64Image %>" alt="Image">
         </div>
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title"><%= rs.getString("name") %></h5>
-            <p class="card-text">Some example text. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate numquam enim deserunt repellat provident nisi aperiam! Fugit laudantium vero labore!</p>
+            <p class="card-text"><%= rs.getString("description") %></p>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"><strong>Data 1:</strong>let's try</li>
+              <li class="list-group-item"><strong>Date</strong><%= rs.getString("date") %></li>
               <li class="list-group-item"><strong>Data 2:</strong> Value 2</li>
               <li class="list-group-item"><strong>Data 3:</strong> Value 3</li>
               <!-- Add more data fields here if needed -->
@@ -120,6 +127,7 @@ stmt = connection.createStatement();
       </div>
     </div>
   </div>
+              </a>
 
     <% } %>
     

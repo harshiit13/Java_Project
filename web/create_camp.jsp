@@ -21,6 +21,21 @@
   </head>
   <body>
       
+                  <% 
+               String username = null;
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+        // Iterate through cookies to find the username cookie
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("username")) {
+                // Found the username cookie, get its value
+                username = cookie.getValue();
+                break;
+            }
+        }
+    }
+            %>
+      
       <div class="container mt-5">
     <div class="row">
         <div class="col">
@@ -36,6 +51,8 @@
    
       <form  enctype="multipart/form-data" action="/Java_Project/camp_ad" method="post">
           
+          
+          <input type="hidden" name ="organization" id="hiddenfield" value="<%= username %>">
         <div class="row m-5">
               <div class="col-3">
                   <div class="mb-3">
@@ -178,7 +195,9 @@
           
           
 </form>
-
+<script>
+      document.getElementById("hiddenfield").value = "<%= username %>";
+  </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>

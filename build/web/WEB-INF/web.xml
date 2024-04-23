@@ -53,7 +53,45 @@
     <servlet-name>camp_ad</servlet-name>
     <url-pattern>/camp_ad</url-pattern>
 </servlet-mapping>
+
+
+<servlet>
+        <servlet-name>inq</servlet-name>
+        <servlet-class>inq</servlet-class> <!-- Replace com.example.LoginServlet with your actual servlet class name -->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>inq</servlet-name>
+        <url-pattern>/inq</url-pattern>
+    </servlet-mapping>
     
+    <servlet>
+        <servlet-name>form</servlet-name>
+        <servlet-class>form</servlet-class> <!-- Replace com.example.LoginServlet with your actual servlet class name -->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>form</servlet-name>
+        <url-pattern>/form</url-pattern>
+    </servlet-mapping>
+    
+    
+     <servlet>
+        <servlet-name>show</servlet-name>
+        <servlet-class>show</servlet-class> <!-- Replace com.example.LoginServlet with your actual servlet class name -->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>show</servlet-name>
+        <url-pattern>/show</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>logout</servlet-class> <!-- Replace com.example.LoginServlet with your actual servlet class name -->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
      
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file> <!-- Remove unnecessary whitespaces around index.jsp -->

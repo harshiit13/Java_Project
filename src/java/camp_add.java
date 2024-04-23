@@ -86,7 +86,7 @@ public class camp_add extends HttpServlet {
      
       String base_camp = formParameters.get("base_camp");
       String capacity = formParameters.get("capacity");
-   
+      String organization = formParameters.get("organization");
       String altitude = formParameters.get("altitude");
   
 
@@ -126,7 +126,7 @@ public class camp_add extends HttpServlet {
             String fileName = extractFileName(part);
             InputStream inputStream = part.getInputStream();
 
-            String sql = "INSERT INTO camp (name,date,description,duration,pickup,location,difficulty,age,price,base_camp,capacity,altitude,photo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO camp (name,date,description,duration,pickup,location,difficulty,age,price,base_camp,capacity,altitude,photo,organization) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, name);
                 statement.setString(2, date);
@@ -141,6 +141,7 @@ public class camp_add extends HttpServlet {
                       statement.setString(11, capacity);
                        statement.setString(12, altitude);
                 statement.setBlob(13, inputStream);
+                statement.setString(14, organization);
                 statement.executeUpdate();
             }
 

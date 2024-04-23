@@ -39,11 +39,10 @@ public class login_user extends HttpServlet {
             throws ServletException, IOException {
        
         PrintWriter out = response.getWriter();
-          out.print("Inside DoPost method ");
+        
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        out.println(email);
-        out.println(password);
+
        
         
           String jdbcURL = "jdbc:mysql://localhost:3306/java_project";
@@ -56,7 +55,7 @@ public class login_user extends HttpServlet {
             Connection connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
             if(connection != null){
             
-            String sql = "SELECT password,username FROM org where email = 'harshitsinhdabhi.21.ce@iite.indusuni.ac.in'";
+            String sql = "SELECT password,username FROM org where email = '"+email+"'";
 
             // Create PreparedStatement
             Statement statement = connection.createStatement();
@@ -72,6 +71,9 @@ public class login_user extends HttpServlet {
                      Cookie cookie = new Cookie("username",username);   
         response.addCookie(cookie);
         response.sendRedirect("index.jsp");
+                }
+                else{
+                    response.sendRedirect("/Java_Project/login_user");
                 }
                 
             }
