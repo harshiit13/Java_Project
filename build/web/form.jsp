@@ -20,11 +20,10 @@ and open the template in the editor.
       </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Create Organization</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Hello, world! bootstrap included </h1>
    
     <form action="/Java_Project/reg_check" method="post">
         <div class="row m-5">
@@ -67,6 +66,7 @@ and open the template in the editor.
   </div>
 
   <button class="btn btn-primary" type="submit">Submit</button>
+    <button window.location.href='index.jsp' class="btn btn-danger m-3">Cancle</button>
 
 </div>
 </div>

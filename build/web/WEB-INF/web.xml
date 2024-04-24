@@ -74,6 +74,16 @@
     </servlet-mapping>
     
     
+      <servlet>
+        <servlet-name>camp_info</servlet-name>
+        <servlet-class>camp_info</servlet-class> <!-- Replace com.example.LoginServlet with your actual servlet class name -->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>camp_info</servlet-name>
+        <url-pattern>/camp_info</url-pattern>
+    </servlet-mapping>
+    
+    
      <servlet>
         <servlet-name>show</servlet-name>
         <servlet-class>show</servlet-class> <!-- Replace com.example.LoginServlet with your actual servlet class name -->
@@ -82,6 +92,28 @@
         <servlet-name>show</servlet-name>
         <url-pattern>/show</url-pattern>
     </servlet-mapping>
+    
+    
+     <servlet>
+        <servlet-name>my_camps</servlet-name>
+        <servlet-class>my_camps</servlet-class> <!-- Replace com.example.LoginServlet with your actual servlet class name -->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>my_camps</servlet-name>
+        <url-pattern>/my_camps</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+     <servlet>
+        <servlet-name>my_cus</servlet-name>
+        <servlet-class>my_cus</servlet-class> <!-- Replace com.example.LoginServlet with your actual servlet class name -->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>my_cus</servlet-name>
+        <url-pattern>/my_cus</url-pattern>
+    </servlet-mapping>
+    
     
     
     <servlet>

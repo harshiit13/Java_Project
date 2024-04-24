@@ -21,6 +21,29 @@
   <meta name="robots" content="noindex, follow">
 </head>
 
+                 <% 
+               String username = null;
+               String rcamp = null;
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+        // Iterate through cookies to find the username cookie
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("username")) {
+                // Found the username cookie, get its value
+                username = cookie.getValue();
+                break;
+            }
+             if (cookie.getName().equals("rcamp")) {
+                // Found the username cookie, get its value
+                rcamp = cookie.getValue();
+                break;
+            }
+        }
+    }
+    System.out.println("Value of rcamp is "+rcamp);
+            %>
+            
+
 <body>
   <div class="main">
     <div class="container">
@@ -35,20 +58,7 @@
         <div class="signup-form">
           <form method="POST" class="register-form" action="/Java_Project/inq" id="register-form">
               
-                 <% 
-               String username = null;
-    Cookie[] cookies = request.getCookies();
-    if (cookies != null) {
-        // Iterate through cookies to find the username cookie
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("username")) {
-                // Found the username cookie, get its value
-                username = cookie.getValue();
-                break;
-            }
-        }
-    }
-            %>
+
               
               <input type="hidden" name="org" id="hiddenfield">
               
@@ -75,20 +85,14 @@
                   <input type="text" name="phone_number" id="phone_number" />
                 </div>
               </div>
+                
+                
               <div class="form-group">
-                <div class="form-select">
-                  <div class="label-flex">
-                    <label for="gender" class="required">Gender</label>
-                    <!-- <a href="#" class="form-link">Lunch detail</a> -->
-                  </div>
-                  <div class="select-list">
-                    <select name="gender" id="gender">
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
+                   <div class="form-input">
+                  <label for="gen" class="required">Gender</label>
+                  <input type="text" name="gender" id="gen" />
                 </div>
+               
                 <div class="form-radio">
                   <div class="label-flex">
                     <label for="payment">Payment Mode</label>
@@ -96,17 +100,17 @@
                   </div>
                   <div class="form-radio-group">
                     <div class="form-radio-item">
-                      <input type="radio" name="payment" id="cash" checked>
+                      <input type="radio" name="payment_mode" id="cash" checked>
                       <label for="cash">Cash</label>
                       <span class="check"></span>
                     </div>
                     <div class="form-radio-item">
-                      <input type="radio" name="payment" id="cheque">
+                      <input type="radio" name="payment_mode" id="cheque">
                       <label for="cheque">Cheque</label>
                       <span class="check"></span>
                     </div>
                     <div class="form-radio-item">
-                      <input type="radio" name="payment" id="demand">
+                      <input type="radio" name="payment_mode" id="demand">
                       <label for="demand">Demand Draf</label>
                       <span class="check"></span>
                     </div>
@@ -114,24 +118,22 @@
                 </div>
                 <div class="form-input">
                   <label for="medicalinfo">Medical Information (if any)</label>
-                  <input type="text" name="medicalinfo" id="medicalinfo" />
+                  <input type="text" name="medical_info" id="medicalinfo" />
                 </div>
                 <div class="form-input">
                   <label for="trackinginfo">Previous tracking information (if any)</label>
-                  <input type="text" name="trackinginfo" id="trackinginfo" />
+                  <input type="text" name="tracking_info" id="trackinginfo" />
                 </div>
                 <div class="form-input">
                   <label for="Dietinfo">Dietary Restictions</label>
-                  <input type="text" name="Dietinfo" id="Dietinfo" />
+                  <input type="text" name="dietary_restrictions" id="Dietinfo" />
                 </div>
               </div>
             </div>
             <div class="donate-us">
-              <label>Fitness level</label>
-              <div class="price_slider ui-slider ui-slider-horizontal">
-                <div id="slider-margin"></div>
-                <span class="fitnesslevel" id="value-lower"></span>
-              </div>
+              <label for="Dietinfo">Fitness level [1 - 10 ]</label>
+                  <input type="text" name="fitness_level" id="Dietinfo" />
+              
             </div>
             <div class="form-submit">
               <input type="submit" value="Submit" class="submit" id="submit" name="submit" />
@@ -144,17 +146,17 @@
       </div>
     </div>
   </div>
-
+  
+  <script>
+      document.getElementById("hiddenfield").value = "<%= rcamp %>";
+  </script>
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/nouislider/nouislider.min.js"></script>
   <script src="vendor/wnumb/wNumb.js"></script>
   <script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
   <script src="vendor/jquery-validation/dist/additional-methods.min.js"></script>
   <script src="js/main.js"></script>
-  
-  <script>
-      document.getElementById("hiddenfield").value = "<%= username %>";
-  </script>
+
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
   <script>

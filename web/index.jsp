@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Trip my site</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     </head>
     <body>
@@ -49,16 +49,14 @@
          <%
  
     if (username != null) {
-     out.println("<li class='nav-item'><a class='nav-link' href='/Java_Project/create_camp'>Create Camp</a></li>   <li class='nav-item'><a class='nav-link' href='#'>My Camps</a></li>");
+     out.println("<li class='nav-item'><a class='nav-link' href='/Java_Project/create_camp'>Create Camp</a></li>   <li class='nav-item'><a class='nav-link' href='/Java_Project/my_camps'>My Camps</a></li>    <li class='nav-item'><a class='nav-link' href='/Java_Project/my_cus'> Regestration Details </a></li> ");
         
     } else {
      out.println("<li class='nav-item'><a class='nav-link' href='/Java_Project/register'>Register</a></li>");
     }
 %>
        
-        <li class="nav-item">
-          <a class="nav-link " href="/Java_Project/form" >Form</a>
-        </li>
+      
       </ul>
         
         
@@ -113,12 +111,12 @@ stmt = connection.createStatement();
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title"><%= rs.getString("name") %></h5>
+            <h5 class="card-title"> <%= rs.getString("name") %> </h5>
             <p class="card-text"><%= rs.getString("description") %></p>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"><strong>Date</strong><%= rs.getString("date") %></li>
-              <li class="list-group-item"><strong>Data 2:</strong> Value 2</li>
-              <li class="list-group-item"><strong>Data 3:</strong> Value 3</li>
+              <li class="list-group-item"><strong>Date :</strong> <%= rs.getString("date") %> </li>
+              <li class="list-group-item"><strong>Duration :</strong> <%= rs.getString("duration") %> days </li>
+              <li class="list-group-item"><strong>Price : </strong> <%= rs.getString("price") %> rs  </li>
               <!-- Add more data fields here if needed -->
             </ul>
             <!-- Additional fields or buttons can be added here -->
@@ -136,6 +134,8 @@ stmt = connection.createStatement();
         </section>
         
         
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+                
+    </script>
     </body>
 </html>

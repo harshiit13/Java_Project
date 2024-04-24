@@ -34,12 +34,12 @@ public class inq extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-    String JDBC_URL = "jdbc:mysql://localhost:3306/your_database_name";
-    String JDBC_USERNAME = "your_username";
-    String JDBC_PASSWORD = "your_password";
+    String JDBC_URL = "jdbc:mysql://localhost:3306/java_project";
+    String JDBC_USERNAME = "root";
+    String JDBC_PASSWORD = "";
 
     // Stored procedure to insert user data
-    String INSERT_USER_DATA_SP = "{CALL InsertUserData(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+    String INSERT_USER_DATA_SP = "{CALL InsertUserData(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)}";
    
    
         try {
@@ -51,26 +51,24 @@ public class inq extends HttpServlet {
              PreparedStatement preparedStatement = connection.prepareCall(INSERT_USER_DATA_SP);
 
             // Set parameters for the stored procedure
-            preparedStatement.setString(1, userData.getFullName());
-            preparedStatement.setDate(2, userData.getDateOfBirth());
-            preparedStatement.setString(3, userData.getNationality());
-            preparedStatement.setString(4, userData.getEmail());
-            preparedStatement.setString(5, userData.getPhoneNumber());
-            preparedStatement.setString(6, userData.getGender());
-            preparedStatement.setString(7, userData.getPaymentMode());
-            preparedStatement.setString(8, userData.getMedicalInfo());
-            preparedStatement.setString(9, userData.getTrackingInfo());
-            preparedStatement.setString(10, userData.getDietaryRestrictions());
-            preparedStatement.setInt(11, userData.getFitnessLevel());
-
+            preparedStatement.setString(1, request.getParameter("full_name"));
+            preparedStatement.setString(2, request.getParameter("DOB"));
+            preparedStatement.setString(3, request.getParameter("nationality"));
+            preparedStatement.setString(4, request.getParameter("email"));
+            preparedStatement.setString(5, request.getParameter("phone_number"));
+            preparedStatement.setString(6, request.getParameter("gender"));
+            preparedStatement.setString(7, request.getParameter("payment_mode"));
+            preparedStatement.setString(8, request.getParameter("medical_info"));
+            preparedStatement.setString(9, request.getParameter("tracking_info"));
+            preparedStatement.setString(10, request.getParameter("dietary_restrictions"));
+            preparedStatement.setString(11, request.getParameter("fitness_level"));
+               preparedStatement.setString(12, request.getParameter("org"));
             // Execute the stored procedure
             preparedStatement.executeUpdate();
         
-        PrintWriter out = response.getWriter();
-        out.println("Heello there it's in post method");
-        out.println(request.getParameter("org"));
+        response.sendRedirect("/Java_Project/");
     }catch(Exception e){
-        System.print.out(e.toString());
+        System.out.print(e.toString());
     }
 }
 

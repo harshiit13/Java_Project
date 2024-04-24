@@ -17,34 +17,45 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author harsh
  */
-@WebServlet(name = "show_1", urlPatterns = {"/show_1"})
-public class show extends HttpServlet {
+@WebServlet(name = "my_camps_1", urlPatterns = {"/my_camps_1"})
+public class my_camps extends HttpServlet {
 
+ 
 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String rcamp = request.getParameter("rcamp");
-        
-        Cookie cookie = new Cookie("rcamp", rcamp);
-        
-        cookie.setMaxAge(24 * 60 * 60);
-      
-        response.addCookie(cookie);
-        response.sendRedirect("camp_info.jsp");
-      
-      
+        String username = "";
+      PrintWriter out = response.getWriter();
+        Cookie[] cookies = request.getCookies();
+       if (cookies != null) {
+            // Iterate over cookies to find the one you need
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("username")) {
+                     username = cookie.getValue();
+                    // Now 'value' contains the value of the cookie named 'rcamp'
+                 
+                    break; // Exit the loop once the cookie is found
+                }
+            }
+response.sendRedirect("my_camps.jsp");
     }
+    }
+       
 
-
+  
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-     
+        
     }
 
-    
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Short description";
